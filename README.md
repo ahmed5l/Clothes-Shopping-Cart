@@ -1,5 +1,4 @@
 # NodeJS Shopping Cart - NodeJS, Express, MongoDB,EJS template 
-## , 
 ### Run locally on your machine
 You need to have installed Node and NPM.
 
