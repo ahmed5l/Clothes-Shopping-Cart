@@ -1,0 +1,84 @@
+ <style>
+  
+ </style>
+
+
+<!--Header-->
+ <div class="nav">
+   <a href="/"> <img src="../img/dark-logo.png" class="brand-logo"></a>
+    <div class="nav-items">
+        <form action="/search" method="post">
+          <div class="search">
+
+           <input type="text" name="b" class="search-box" placeholder="Search brand, Product ">
+           <button type="submit" class="search-btn" >Search </button>
+          </div>
+
+          </form>
+
+
+        <a>
+
+        <div class="dropdown">
+          
+            <img src=""   onclick="myFunction()" class="dropbtn" alt="">
+
+            <div id="myDropdown" class="dropdown-content">
+                 
+                <% if(checkUser) { %>
+                    <a class="dropdown-item" href="/profile">Profile</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    <% } else { %>
+                    <a class="dropdown-item" href="/signup">SignUp</a>
+                    <a class="dropdown-item" href="/signin">SignIn</a>
+                    <% } %>
+         
+            </div>
+          </div>
+        
+      
+        </a>
+        
+        <a href="/shoppingCart"> 
+          <% if(checkUser){ %>
+          <span class="badge rounded-pill bg-primary"><%=totalProduct %></span>
+          <% } %>
+          <img src="img/cart.png" alt=""></a>
+        
+    </div>
+</div> 
+
+   <ul class="link-container">
+
+      <li class="link-item"><a href="/" class="link">Home</a></li>
+      <li class="link-item"><a href="#" class="link">Woman</a></li>
+      <li class="link-item"><a href="#" class="link">Man</a></li>
+      <li class="link-item"><a href="#" class="link">Kinds</a></li>
+      <li class="link-item"><a href="#" class="link">accessories</a></li>
+
+   </ul>
+
+
+`
+<!--end Header-->
+
+<script>
+    function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+

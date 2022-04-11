@@ -1,0 +1,46 @@
+
+<%- include('header'); %>
+
+<%- include('../style/search.ejs'); %>
+
+<section class="search-results">
+
+    <h2 class="heading"> search results for <span>product</span></h2>
+
+    <div class="product-container">
+        <% product.forEach(element =>{%>
+
+           
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-tag"><%= element.discount %>%off</span>
+                     <img src="<%= element.imagePath%>" class="product-thumb"alt="">
+                     <% if(checkUser) {%>
+                  <a href="/product/<%= element._id %>">     <button class="card-btn">add to whislist</button></a>
+                       <% } else {%>
+                       
+      
+                           <button class="card-btn"   data-bs-toggle="modal" data-bs-target="#exampleModal">add to whislist</button>
+      
+                        <% }%>
+                </div>
+           
+           <div  class="product-info">
+              
+            <h2 class="product-brand"  style="font-size: 20px;"><%= element.brand %></h2>
+            <p class="product-short-des">a short line about the cloth...</p>
+             <span class="price">$ <%= element.price - (element.price * element.discount/100) %> </span> <span class="actual-price"> <%= element.price%> $</span>
+           </div>
+           
+            </div>
+      
+         <% }) %>
+        
+       
+        
+  
+  
+    </div>
+</section>
+
+<%- include('footer'); %>

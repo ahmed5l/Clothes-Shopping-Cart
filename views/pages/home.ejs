@@ -1,0 +1,189 @@
+<%- include('header'); %>
+
+
+<%- include('../style/styleProduct.ejs'); %>
+
+
+
+     
+
+
+     <header class="hero-section">
+        <div class="content">
+      <img src="img/light-logo.png" class="logo">
+      <p class="sub-heading">best fashing collection of all times</p>
+        </div>
+    </header>
+
+
+  <!-- cards container-->
+  <section class="product">
+ <h2 class="product-category">besst selling</h2>
+ <button class="pre-btn"><img src="img/arrow.png"></button>
+ <button class="next-btn"><img src="img/arrow.png"></button>
+ <div class="product-container">
+  <% product.forEach(element =>{%>
+          
+          
+     <div class="product-card">
+         <div class="product-image">
+             <span class="discount-tag"><%= element.discount %>%off</span>
+              <img src="<%= element.imagePath%>" class="product-thumb"alt="">
+              <% if(checkUser) {%>
+           <a href="/product/<%= element._id %>">     <button class="card-btn">add to whislist</button></a>
+                <% } else {%>
+                
+
+                    <button class="card-btn"   data-bs-toggle="modal" data-bs-target="#exampleModal">add to whislist</button>
+
+                 <% }%>
+         </div>
+    
+    <div  class="product-info">
+       
+     <h2 class="product-brand"  style="font-size: 20px;"><%= element.brand %></h2>
+     <p class="product-short-des">a short line about the cloth...</p>
+      <span class="price">$ <%= element.price - (element.price * element.discount/100)%></span> <span class="actual-price"> <%= element.price%> $</span>
+    </div>
+    
+     </div>
+    
+
+  <% }) %>
+
+    
+     </div>
+
+ </div>
+  </section>
+  <!--collection-->
+  <section class="collection-container">
+   <a href="#" class="collection">
+     <img src="img/women-collection.png" alt="">
+     <p class="collection-title">woman <br>apparels</p>
+   </a>
+   <a href="#" class="collection">
+     <img src="img/men-collection.png" alt="">
+     <p class="collection-title">man <br>apparels</p>
+   </a>
+   <a href="#" class="collection">
+     <img src="img/accessories-collection.png" alt="">
+     <p class="collection-title">woman <br>apparels</p>
+   </a>
+  </section>
+
+  
+<!-- cards container shrits-->
+<section class="product">
+  <h2 class="product-category">shrits</h2>
+  <button class="pre-btn"><img src="img/arrow.png"></button>
+  <button class="next-btn"><img src="img/arrow.png"></button>
+  <div class="product-container">
+      
+    <% product.forEach(element =>{%>
+          
+     <% if(element.category === "Shrits") { %>
+           
+      <div class="product-card">
+          <div class="product-image">
+              <span class="discount-tag"><%= element.discount %>%off</span>
+               <img src="<%= element.imagePath%>" class="product-thumb"alt="">
+               <% if(checkUser) {%>
+            <a href="/product/<%= element._id %>">     <button class="card-btn">add to whislist</button></a>
+                 <% } else {%>
+                 
+
+                     <button class="card-btn"   data-bs-toggle="modal" data-bs-target="#exampleModal">add to whislist</button>
+
+                  <% }%>
+          </div>
+     
+     <div  class="product-info">
+        
+      <h2 class="product-brand"  style="font-size: 20px;"><%= element.brand %></h2>
+      <p class="product-short-des">a short line about the cloth...</p>
+       <span class="price">$ <%= element.price - (element.price * element.discount/100)%></span> <span class="actual-price"> <%= element.price%> $</span>
+     </div>
+     
+      </div>
+      <% }%>
+
+   <% }) %>
+
+  </div>
+
+
+
+
+  
+   </section>
+   <!-- cards container SHOSE-->
+   <section class="product">
+     <h2 class="product-category">shose</h2>
+
+     <button class="pre-btn"><img src="img/arrow.png"></button>
+     <button class="next-btn"><img src="img/arrow.png"></button>
+     <div class="product-container">
+        
+      <% product.forEach(element =>{%>
+          
+        <% if(element.category === "shose") { %>
+              
+         <div class="product-card">
+             <div class="product-image">
+                 <span class="discount-tag"><%= element.discount %>%off</span>
+                  <img src="<%= element.imagePath%>" class="product-thumb"alt="">
+                  <% if(checkUser) {%>
+               <a href="/product/<%= element._id %>">     <button class="card-btn">add to whislist</button></a>
+                    <% } else {%>
+                    
+   
+                        <button class="card-btn"   data-bs-toggle="modal" data-bs-target="#exampleModal">add to whislist</button>
+   
+                     <% }%>
+             </div>
+        
+        <div  class="product-info">
+           
+         <h2 class="product-brand"  style="font-size: 20px;"><%= element.brand %></h2>
+         <p class="product-short-des">a short line about the cloth...</p>
+          <span class="price">$ <%= element.price - (element.price * element.discount/100)%></span> <span class="actual-price"> <%= element.price%> $</span>
+        </div>
+        
+         </div>
+         <% }%>
+   
+      <% }) %>
+   
+
+ 
+ 
+         </div>
+ 
+     </div>
+      </section>
+
+
+      <%- include('footer'); %>
+
+
+
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-primary"href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>

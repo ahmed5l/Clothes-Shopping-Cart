@@ -1,0 +1,120 @@
+
+<%- include('../style/styleProduct.ejs'); %>
+
+
+<section class="product-details">
+    <div  class="image-slider">
+        <!--  <div class="product-images">
+      <img src="img/product image 1.png" class="active" alt="">
+      <img src="img/product image 2.png" alt="">
+        <img src="img/product image 3.png" alt="">
+        <img src="img/product image 4.png" alt=""> 
+    </div> -->
+    </div>
+
+    <div class="details">
+        <h2 class="product-brand"><%= product.brand%></h2>
+        <p class="product-short-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, velit recusandae saepe dolorum, quos molestias ullam,</p>
+        <span class="product-price">$ <%= product.price - (product.price * product.discount/100)%> </span>
+        <span class="product-actual-price">$<%= product.price%></span>
+        <span class="product-discount">{ <%= product.discount%>% off  }</span>
+        <p class="product-sub-heading">select size </p>
+        <%product.sizes.forEach(sizes =>{ %>
+            <input type="radio" name="size" value="<%= sizes%>"  hidden id="<%= sizes%>-size">
+            <label for="v-size" class="size-radio-btn "><%= sizes%></label>
+        <% })%>
+       
+        
+        <br>
+
+      <a href="/shoppingCart/<%=product._id %>/<%= product.price - (product.price * product.discount/100)%> /<%=product.productName %>">  <button class="btn cart-btn">addTpCart</button> </a>
+        <button class="btn">add to</button>
+    </div>
+
+</section>
+
+
+<section class="delail-des">
+    <h2 class="heading">description</h2>
+    <p class="des">Lorem ipsum dolor sit amet consectetur, 
+        adipisicing elit. Esse adipisci blanditiis 
+        distinctio delectus error fugit aliquid rerum
+         officia eius laboriosam labore voluptate possimus
+          corporis voluptatum, sed atque officiis molestiae 
+          rum.</p>
+
+</section>
+
+   <section class="product">
+    <h2 class="product-category">shose</h2>
+
+    <button class="pre-btn"><img src="img/arrow.png"></button>
+    <butti7/o0on class="next-btn"><img src="img/arrow.png"></button>
+    <div class="product-container">
+        <% products.forEach(element =>{%>
+          
+                  
+             <div class="product-card">
+                 <div class="product-image">
+                     <span class="discount-tag"><%= element.discount %>%off</span>
+                      <img src="<%= element.imagePath%>" class="product-thumb"alt="">
+                      <% if(checkUser) {%>
+                   <a href="/product/<%= element._id %>">     <button class="card-btn">add to whislist</button></a>
+                        <% } else {%>
+                        
+       
+                            <button class="card-btn"   data-bs-toggle="modal" data-bs-target="#exampleModal">add to whislist</button>
+       
+                         <% }%>
+                 </div>
+            
+            <div  class="product-info">
+               
+             <h2 class="product-brand"  style="font-size: 20px;"><%= element.brand %></h2>
+             <p class="product-short-des">a short line about the cloth...</p>
+              <span class="price">$ <%= element.price - (element.price * element.discount/100)%></span> <span class="actual-price"> <%= element.price%> $</span>
+            </div>
+            
+             </div>
+       
+          <% }) %>
+       
+       
+        </div>
+  
+    </div>
+     </section>
+
+
+
+     <script>
+         const productImage=document.querySelectorAll(".product-images img");
+const productImageSlide=document.querySelector('.image-slider');
+
+
+let activeImageSlide =0;
+
+productImage.forEach((item,i)=>{
+    item.addEventListener('click',()=>{
+        productImage[activeImageSlide].classList.remove('active');
+    
+        item.classList.add('active');
+        productImageSlide.style.backgroundImage=`url(${item.src})`
+         activeImageSlide=i;
+    })
+})
+
+
+const sizeBtns=document.querySelectorAll('.size-radio-btn');
+let checkedBtn=0;
+
+sizeBtns.forEach((item,i)=>{
+    item.addEventListener('click',()=>{
+        sizeBtns[checkedBtn].classList.remove('check');
+        item.classList.add('check');
+        checkedBtn=i;
+    })
+})
+     </script>
+
+

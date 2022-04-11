@@ -1,0 +1,76 @@
+<%- include('../style/bootstrapeoduct.ejs'); %>
+
+
+<% if(userCart) { %>
+
+    <div style="padding-top: 30px;">
+        <table class="table ">
+          <thead>
+            <tr class="table-active">
+              <th scope="col"  class="text-center">#</th>
+              <th scope="col"  class="text-center">Product Name</th>
+              <th scope="col"  class="text-center">Product Quantity</th>
+              <th scope="col"  class="text-center">Product Price</th>
+              <th scope="col"  class="text-center">delete</th>
+            </tr>
+          </thead>
+          <% userCart.selectesProduct.forEach((pro,index)=>{ %>
+          
+        
+            <tr>
+              <th scope="row"><%=index +1 %></th>
+              <td class="text-center a">
+                <%=pro.name %>
+              
+              </td>
+          <td class="text-center">
+                <% if(pro.quantity <= 1 ) { %>
+                <a href="#" class="btn disabled"><i class="fas fa-minus-square"></i></a>
+                <% } else { %>
+                  <a href="/shoppingCart/decreaseProduct/<%=index %>" class="btn"><i class="fas fa-minus-square"></i></a>
+                  <% } %>
+                <%=pro.quantity %>
+                <a href="/shoppingCart/increaseProduct/<%=index %>" class="btn"><i class="fas fa-plus"></i></a>
+        
+                </td>
+              <td class="text-center"><%=pro.price %></td>
+              <td class="text-center"> <a href="/shoppingCart/deleteProduct/<%=index %>" class="btn btn-danger ">delete<i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% }); %>
+            <tr class="table-primary">
+              <td colspan="3">Total Price</td>
+              <td class="text-center "><%=userCart.totalPrice %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+      <form action="order" method="POST"> 
+        <script
+            src="//checkout.stripe.com/v3/checkout.js"
+            class="stripe-button"
+            data-key="<%= key%>" 
+            data-amount="<%=userCart.totalPrice %>" 
+            data-currency="usd" 
+            data-name="Ahmed Zaki" 
+            data-description="" 
+            data-locale="auto" > 
+            </script> 
+        </form>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script src="https://js.stripe.com/v2/"></script>
+    <% } else { %>
+    </div>
+          
+    <% if(hasCart) { %>
+    
+    <h1>CART IS expaier</h1>
+    <% } else { %>
+      <h1>CART IS empety</h1>
+      <% } %>
+    <% } %>
+
+
+

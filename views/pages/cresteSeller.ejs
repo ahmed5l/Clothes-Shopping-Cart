@@ -1,0 +1,100 @@
+<%- include('../style/style.ejs'); %>
+
+
+
+<div class="alert-box">
+    <img src="img/error.png" class="alert-img">
+    <p class="alert-msg">Error message</p>
+   
+
+</div>
+
+<div class="container">
+    <img src="img/dark-logo.png" class="logo" alt="">
+
+    
+
+        <form action="/admin/createSeller" method="post">
+            <div>
+                <input type="text" name="brandName" id="brandName" placeholder="brandName" required>
+            
+                <%  massages.forEach(element => { %>
+                        <% if (element.param === 'brandName'){ %>
+                           <div class="alert alert-danger">
+                         <input type="hidden" id="error" value="<%=element.msg %>">
+                           </div>
+                             <% }%>
+                       
+                  <% }); %>  
+        <input type="email" name="email" id="email" placeholder="email" >
+            
+        <%  massages.forEach(element => { %>
+                <% if (element.param === 'email'){ %>
+                   <div class="alert alert-danger">
+                 <input type="hidden" id="error" value="<%=element.msg %>">
+                   </div>
+                     <% }%>
+               
+          <% }); %>    
+          
+          <input type="password"id="password" name="password" placeholder= "password">
+            <%  massages.forEach(element => { %>
+                <% if (element.param === 'password'){ %>
+                   <div class="alert alert-danger">
+                    <input type="hidden" id="error" value="<%=element.msg %>">
+                </div>
+                     <% }%>
+               
+          <% }); %>
+
+          <input type="password"id="password" name="confirm-password" placeholder=" ReEnter your password">
+            <%  massages.forEach(element => { %>
+                <% if (element.param === 'confirm-password'){ %>
+                   <div class="alert alert-danger">
+                    <input type="hidden" id="error" value="<%=element.msg %>">
+                </div>
+                     <% }%>
+               
+          <% }); %>
+
+          <%  massages.forEach(element => { %>
+
+
+            <input type="hidden" id="error" value="<%=element%>">
+  
+            <% }); %>
+       
+
+         <button type="submit" class="submit-btn" value="">create Seller</button>
+        </div>
+
+        </form>
+
+    
+    <a href="/login" class="link">aleard have  an account login here</a>
+
+</div>
+
+
+
+
+
+<script>
+    const showAlert=(msg)=>{
+        let alertBox =document.querySelector('.alert-box');
+        let alertMsg =document.querySelector('.alert-msg');
+    
+    
+        alertMsg.innerHTML=msg;
+        alertBox.classList.add('show');
+    
+        setTimeout(()=>{
+          alertBox.classList.remove('show') 
+        },3000) 
+    }
+  let msg=document.getElementById("error").value
+
+  if(msg !=null){
+    showAlert(msg)
+  }
+    </script>

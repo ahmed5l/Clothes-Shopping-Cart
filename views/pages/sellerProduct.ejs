@@ -1,0 +1,62 @@
+<%- include('../style/bootstrapeoduct.ejs'); %>
+
+
+
+
+<% if(product) { %>
+
+    <div style="padding-top: 30px;">
+        <table class="table ">
+          <thead>
+            <tr class="table-active">
+              <th scope="col"  class="text-center">#</th>
+              <th scope="col"  class="text-center">imageProduct</th>
+              <th scope="col"  class="text-center">Product Name</th>
+              <th scope="col"  class="text-center">Product Price</th>
+              <th scope="col"  class="text-center">Product category</th>
+              <th scope="col"  class="text-center">delete</th>
+              <th scope="col"  class="text-center">update</th>
+            </tr>
+          </thead>
+          <% product.forEach((pro,index)=>{ %>
+          
+        
+            <tr>
+              <th scope="row"><%=index +1 %></th>
+              <td class="text-center a">
+                <%=pro.productName %>
+              
+              </td>
+
+              <td class="text-center a">
+                 image              
+              </td>
+              <td class="text-center a">
+                <%=pro.price %>
+
+             </td>
+
+             <td class="text-center a">
+                <%=pro.category %>
+
+             </td>
+             <td class="text-center"> <a href="/shoppingCart/deleteProduct/<%=index %>" class="btn btn-danger ">delete<i class="fas fa-trash-alt"></i></a>
+                <td class="text-center"> <a href="/seller/showUpdateProduct/<%=pro._id %>" class="btn btn-primary ">update<i class="fas fa-trash-alt"></i></a>
+
+          
+            </tr>
+            <% }); %>
+            <tr class="table-primary">
+              <td colspan="3">Total product</td>
+              <td class="text-center "></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <% } else { %>
+    
+          not product
+
+    <% } %>
+
+

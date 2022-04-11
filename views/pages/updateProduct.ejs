@@ -1,0 +1,92 @@
+<%- include('../style/bootstrapeoduct.ejs'); %>
+
+<%- include('../style/updateProduct.ejs'); %>
+
+
+<% massages.forEach((pro)=>{ %>
+    <div class="alert alert-danger">
+        <p><%=pro %></p>
+    </div>
+    <% }); %>
+<form action="/seller/updateProduct/<%=product._id%>" method="post" enctype="multipart/form-data">
+
+<div class="form">
+    <input type="text" name="name"  id="product-name" maxlength="50" placeholder="product" value="<%= product.productName%>" required>
+    <input id="des" type="text" name="shortdescription" placeholder="short description" value required>
+    <textarea id="des"  name="description" placeholder="detail description" required><%= product.description%></textarea>
+    <input type="text"  name="category" placeholder="category" value="<%= product.category%>"required >
+    <input type="number" name="price" placeholder="price" value="<%= product.price%>" required>
+    <input type="number" name="discount" placeholder="discount" value="<%= product.discount%>" required>
+
+
+</div> 
+
+
+<div class="product-info">
+    <div class="product-image">
+   <div class="upload-image-sec">
+    <img src="../../n<%= product.imagePath%>" alt="mjn"
+        class="img-fluid img-thumbnail" id="image">
+    <br>
+    <br>
+        <input type="file" id="file" multiple name="myfile" required>
+        <div id="action">
+        </div>
+     
+  
+</div>
+ </div>
+
+
+
+        
+
+        
+    <div class="select-sizes">
+        <p class="text">size available</p>
+      <% if( product.category !== "shoes") {%>
+    <div class="sizes" id="clothes">
+           <input type="checkbox" class="size-checkbox" id="xs" value="xs">
+           <input type="checkbox" class="size-checkbox" id="s" value="s">
+           <input type="checkbox" class="size-checkbox" id="m" value="m">
+           <input type="checkbox" class="size-checkbox" id="l" value="l">
+           <input type="checkbox" class="size-checkbox" id="xl" value="xl">
+           <input type="checkbox" class="size-checkbox" id="xxl" value="xxl">
+           <input type="checkbox" class="size-checkbox" id="xxxl" value="xxxl">
+        </div>
+        <% } else {%>
+    <div class="sizes" id="shoes">
+       <input type="checkbox" class="size-checkbox"  id="a" value="40">
+       <input type="checkbox" class="size-checkbox" id="b" value="41">
+       <input type="checkbox" class="size-checkbox" id="c" value="42">
+       <input type="checkbox" class="size-checkbox" id="d" value="43">
+       <input type="checkbox" class="size-checkbox" id="e" value="44">
+       <input type="checkbox" class="size-checkbox" id="f" value="45">
+       <input type="checkbox" class="size-checkbox" id="g" value="46">
+
+    </div>
+      <% }%>
+    <div class="sizes">
+        <%product.sizes.forEach(sizes =>{ %>
+            <input type="radio" name="size" value="<%= sizes%>"  hidden id="<%= sizes%>-size">
+            <label for="v-size" class="size-radio-btn "><%= sizes%></label>
+        <% })%>
+    </div>
+    </div>       
+
+   
+  
+</div>
+
+
+
+
+<div class="buttons">
+    <button type="submit" class="btn" id="add-btn">add product</button>
+    <button class="btn" id="save-btn">save draft</button>
+
+</div>
+
+</form>
+
+
