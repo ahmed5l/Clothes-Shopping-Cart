@@ -17,7 +17,7 @@ npm start
 
 For Nodemon usage
 ``` shell
-nodemon ./bin/www
+nodemon . app
 ```
 
 ### Technologies
