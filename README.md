@@ -20,5 +20,5 @@ nodemon  app
 ```
 
 ### Technologies
-NodeJS, Express, Express-Session, Nodemon,Passport.js, Express-validation,Mongoose.js
+NodeJS, Express, Express-Session, Nodemon,Passport.js, Express-validation,Mongoose.js ,EJS template 
 
